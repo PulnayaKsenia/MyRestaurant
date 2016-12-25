@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+       default-autowire="byName">
+
+    <bean id="orderService" class="ua.goit.java.finalProject.services.OrderService">
+        <property name="ordersDao" ref="ordersDao"/>
+        <property name="dishDao" ref="dishDao"/>
+        <property name="dishToOrderDAO" ref="dishToOrderDao"/>
+    </bean>
+
+    <bean id="stockService" class="ua.goit.java.finalProject.services.StockService">
+        <property name="stockDao" ref="stockDao"/>
+        <property name="ingredientsDao" ref="ingredientsDao"/>
+        <property name="dishDao" ref="dishDao"/>
+    </bean>
+
+    <bean id="ingredientService" class="ua.goit.java.finalProject.services.IngredientService">
+        <property name="ingredientsDao" ref="ingredientsDao"/>
+        <property name="listOfIngredientsDao" ref="listOfIngredientsDao"/>
+    </bean>
+
+    <bean id="employeeService" class="ua.goit.java.finalProject.services.EmployeeService"/>
+
+    <bean id="dishService" class="ua.goit.java.finalProject.services.DishService">
+        <property name="listOfIngredientsDao" ref="listOfIngredientsDao"/>
+        <property name="ingredientsDao" ref="ingredientsDao"/>
+        <property name="ordersDao" ref="ordersDao"/>
+    </bean>
+
+
+    <bean id="cookedDishesDao" class="ua.goit.java.finalProject.dao.CookedDishDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dishDao" class="ua.goit.java.finalProject.dao.DishDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dishToOrderDao" class="ua.goit.java.finalProject.dao.DishToOrderDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="employeeDao" class="ua.goit.java.finalProject.dao.EmployeeDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="ingredientsDao" class="ua.goit.java.finalProject.dao.IngredientsDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="listOfIngredientsDao" class="ua.goit.java.finalProject.dao.ListOfIngredientsDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="ordersDao" class="ua.goit.java.finalProject.dao.OrdersDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="stockDao" class="ua.goit.java.finalProject.dao.StockDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="ingredientsDao" ref="ingredientsDao"/>
+    </bean>
+
+    <bean id = "employeeController" class="ua.goit.java.finalProject.controllers.EmployeeController"/>
+    <bean id = "dishController" class="ua.goit.java.finalProject.controllers.DishController"/>
+    <bean id = "orderController" class="ua.goit.java.finalProject.controllers.OrderController"/>
+    <bean id = "stockController" class="ua.goit.java.finalProject.controllers.StockController"/>
+    <bean class="ua.goit.java.finalProject.controllers.MainController" id="mainController"/>
+</beans>
